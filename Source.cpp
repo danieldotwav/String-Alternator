@@ -23,19 +23,22 @@ string mergeAlternately(string word1, string word2) {
 	word1 = getStringWithoutSpaces(word1);
 	word2 = getStringWithoutSpaces(word2);
 
+	// Pre-allocated the string to the maximum needed size
+	int repeats = max(word1.length(), word2.length());
+	string mergedStr;
+	mergedStr.reserve(repeats);
+
 	// Alternate letters from both words and build merged string
-	string temp = "";
-	int repeats = word1.length() >= word2.length() ? word1.length() : word2.length();
 	for (int i = 0; i < repeats; ++i) {
 		if (i < word1.length()) {
-			temp += word1[i];
+			mergedStr += word1[i];
 		}
 		if (i < word2.length()) {
-			temp += word2[i];
+			mergedStr += word2[i];
 		}
 	}
 
-	return temp;
+	return mergedStr;
 }
 
 string getStringWithoutSpaces(string word) {
