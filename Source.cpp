@@ -15,8 +15,9 @@ int main() {
 }
 
 string mergeAlternately(string word1, string word2) {
-	int word1Len = word1.length();
-	int word2Len = word2.length();
+	// Edge Cases
+	if (word1.empty()) { return word2; }
+	if (word2.empty()) { return word1; }
 
 	// Remove all spaces from both strings
 	word1 = getStringWithoutSpaces(word1);
@@ -29,11 +30,9 @@ string mergeAlternately(string word1, string word2) {
 		if (i < word1.length()) {
 			temp += word1[i];
 		}
-		
 		if (i < word2.length()) {
 			temp += word2[i];
 		}
-		
 	}
 
 	return temp;
