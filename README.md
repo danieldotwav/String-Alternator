@@ -18,23 +18,31 @@ This project provides a simple C++ implementation for merging two strings altern
 ### Code Snippet
 
 ```cpp
-#include <iostream>
-using namespace std;
-
-string mergeAlternately(string word1, string word2);
-string getStringWithoutSpaces(string word);
-
-int main() {
-    cout << mergeAlternately("abc", "pqr");
-    return 0;
-}
-
 string mergeAlternately(string word1, string word2) {
-    // Implementation details...
-}
+	// Edge Cases
+	if (word1.empty()) { return word2; }
+	if (word2.empty()) { return word1; }
 
-string getStringWithoutSpaces(string word) {
-    // Implementation details...
+	// Remove all spaces from both strings
+	word1 = getStringWithoutSpaces(word1);
+	word2 = getStringWithoutSpaces(word2);
+
+	// Pre-allocated the string to the maximum needed size
+	int repeats = max(word1.length(), word2.length());
+	string mergedStr;
+	mergedStr.reserve(repeats);
+
+	// Alternate letters from both words and build merged string
+	for (int i = 0; i < repeats; ++i) {
+		if (i < word1.length()) {
+			mergedStr += word1[i];
+		}
+		if (i < word2.length()) {
+			mergedStr += word2[i];
+		}
+	}
+
+	return mergedStr;
 }
 ```
 
